@@ -86,31 +86,34 @@ class App extends Component {
   }
 
   render() {
-    const { tabId } = this.state;
+    const { tabId, firstPageLoad } = this.state;
     if (!tabId) return null;
     if (!this.shouldShowSpanTree()) {
       if (this.props.opened[tabId]) this.toggleOpenedThisTab();
       applyClosedPageStyling();
       return null;
     }
-
+    const { opened, width } = this.props;
+    if (!opened[tabId] && width && firstPageLoad) {
+      this.toggleOpenedThisTab();
+    }
     return (
       <Fragment>
         <link rel="stylesheet" type="text/css" href={importFileIconCSS} />
-        {this.props.opened[tabId]
-          ? ReactDOM.createPortal(
-              <Pane
-                toggleOpened={this.toggleOpenedThisTab}
-                width={this.props.width}
-                firstPageLoad={this.state.firstPageLoad}
-                setFirstPageLoad={this.setFirstPageLoad}
-                reloading={this.state.reloading}
-                setReloading={this.setReloading}
-                setShowSearchbarTrue={() => this.setShowSearchbar(true)}
-              />,
-              parentDiv
-            )
-          : ReactDOM.createPortal(
+            {this.props.opened[tabId]
+                ? ReactDOM.createPortal(
+                    <Pane
+                        toggleOpened={this.toggleOpenedThisTab}
+                        width={this.props.width}
+                        firstPageLoad={this.state.firstPageLoad}
+                        setFirstPageLoad={this.setFirstPageLoad}
+                        reloading={this.state.reloading}
+                        setReloading={this.setReloading}
+                        setShowSearchbarTrue={() => this.setShowSearchbar(true)}
+                    />,
+                    parentDiv
+                )
+            :ReactDOM.createPortal(
               <Toggler
                 handleClick={this.toggleOpenedThisTab}
                 pinned={this.props.pinned}

@@ -4,7 +4,8 @@
   "description": "Tree for Gitlab",
   "scripts": {
     "start": "gulp && gulp watch",
-    "export": "NODE_ENV=production npm start"
+    "export": "cross-env NODE_ENV=production && npm start",
+    "pack": "cross-env NODE_ENV=production && gulp"
   },
   "author": "Taveesh Anand",
   "dependencies": {
@@ -28,6 +29,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "7.0.3",
     "css-loader": "^5.2.5",
     "fancy-log": "^2.0.0",
     "file-loader": "^6.0.0",
