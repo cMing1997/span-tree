@@ -54,6 +54,12 @@ Steps:
 
    (For reference follow: https://thoughtbot.com/blog/how-to-make-a-chrome-extension)
 
+5. 如果你想获取打包之后的产物
+    ```bash
+    npm run pack
+    ```
+6. 如果不能访问谷歌应用商店，可以直接使用项目目录中的 `span-tree-gitlab`
+
 ## 💳 Credits
 
 SpanTree uses the following open-source packages:
